@@ -1,0 +1,298 @@
+basePath: /api/v1
+definitions:
+  models.terraform_module:
+    properties:
+      author:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Createterraform_module:
+    properties:
+      author:
+        type: string
+      title:
+        type: string
+    required:
+    - author
+    - title
+    type: object
+  models.LoginUser:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  models.Updateterraform_module:
+    properties:
+      author:
+        type: string
+      title:
+        type: string
+    type: object
+externalDocs:
+  description: OpenAPI
+  url: https://swagger.io/resources/open-api/
+host: localhost:5247
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+  /terraform_module:
+    get:
+      description: Get a list of all terraform_module with optional pagination
+      parameters:
+      - default: 0
+        description: Offset for pagination
+        in: query
+        name: offset
+        type: integer
+      - default: 10
+        description: Limit for pagination
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved list of terraform_module
+          schema:
+            items:
+              $ref: '#/definitions/models.terraform_module'
+            type: array
+      security:
+      - ApiKeyAuth: []
+      summary: Get all terraform_module with pagination
+      tags:
+      - terraform_module
+    post:
+      consumes:
+      - application/json
+      description: Create a new terraform_module with the given input data
+      parameters:
+      - description: Create terraform_module object
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Createterraform_module'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Successfully created terraform_module
+          schema:
+            $ref: '#/definitions/models.terraform_module'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - JwtAuth: []
+      summary: Create a new terraform_module
+      tags:
+      - terraform_module
+  /terraform_module/{id}:
+    delete:
+      description: Delete the terraform_module with the given ID
+      parameters:
+      - description: terraform_module ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Successfully deleted terraform_module
+          schema:
+            type: string
+        "404":
+          description: terraform_module not found
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Delete a terraform_module by ID
+      tags:
+      - terraform_module
+    get:
+      description: Get details of a terraform_module by its ID
+      parameters:
+      - description: terraform_module ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved terraform_module
+          schema:
+            $ref: '#/definitions/models.terraform_module'
+        "404":
+          description: terraform_module not found
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Find a terraform_module by ID
+      tags:
+      - terraform_module
+    put:
+      consumes:
+      - application/json
+      description: Update the terraform_module details for the given ID
+      parameters:
+      - description: terraform_module ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Update terraform_module object
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.Updateterraform_module'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully updated terraform_module
+          schema:
+            $ref: '#/definitions/models.terraform_module'
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: terraform_module not found
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Update a terraform_module by ID
+      tags:
+      - terraform_module
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticates a user using username and password, returns a JWT
+        token if successful
+      parameters:
+      - description: User login object
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: JWT Token
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "401":
+          description: Unauthorized
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Authenticate a user
+      tags:
+      - user
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user with the given username and password
+      parameters:
+      - description: User registration object
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/models.LoginUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully registered
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Register a new user
+      tags:
+      - user
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: X-API-Key
+    type: apiKey
+  JwtAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

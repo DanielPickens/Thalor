@@ -1,0 +1,9 @@
+{
+  "remoteState": [
+    {
+      "user": "Thalor-dev",
+      "terraformStateBucket": "Thalor-tfstate-2d9a98057b9fbadd6b2615adbc5bfa5c36badef9",
+      "terraformStateDynamoDBTable": "Thalor-tfstate-2d9a98057b9fbadd6b2615adbc5bfa5c36badef9-lock"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "name": "prod",
+    "terraform": {
+      "bucket_arn": {
+        "sensitive": false,
+        "type": "string",
+        "value": "arn:aws:s3:::Thalor-ci-test-s3-1730361539163"
+      },
+      "bucket_name": {
+        "sensitive": false,
+        "type": "string",
+        "value": "Thalor-ci-test-s3-1730361539163"
+      }
+    }
+  }
+]
